@@ -11,7 +11,7 @@
 
 ## 域名和限制 
 
-在 [`Cloudflare Workers`](https://workers.dev) 申请的子域为 `zhihuvvv.workers.dev`, 是对 [`zhihuvvv`](zhihuvvv.com) 的致敬.
+在 [`Cloudflare Workers`](https://workers.dev) 申请的子域为 `zhihuvvv.workers.dev`, 是对 [`zhihuvvv`](http://zhihuvvv.com) 的致敬.
 
 而关于 [`Cloudflare Workers Free`](https://workers.dev) 的 [**限制**](https://developers.cloudflare.com/workers/about/limits/) 为 ( `zhihuvvv.workers.dev` 子域全局):
 
@@ -35,7 +35,7 @@
 
 Android 版推出了 `极速版` , 但是有功能限制, 而且设计得更多像是 `*乎` 在探路短视频.
 
-曾经在 [`v2ex`](https://www.v2ex.com/t/520509) 看见一个作品叫做 [**zhihuvvv**](zhihuvvv.com), 利用 `*乎` 给予搜索引擎的优待, 不过似乎已经失效很久. 
+曾经在 [`v2ex`](https://www.v2ex.com/t/520509) 看见一个作品叫做 [**zhihuvvv**](http://zhihuvvv.com), 利用 `*乎` 给予搜索引擎的优待, 不过似乎已经失效很久. 
 
 在一次群内谈论 [`Cloudflare Workers`](https://workers.dev) 的过程中, 于是就想能不能利用 [`Cloudflare Workers`](https://workers.dev) 来 `复活` 这个项目.  
 
@@ -43,7 +43,7 @@ Android 版推出了 `极速版` , 但是有功能限制, 而且设计得更多�
 
 ## 分析  
 
-[`zhihuvvv`](zhihuvvv.com) 的思路应该是被针对了, 所以考虑自己实现. 
+[`zhihuvvv`](http://zhihuvvv.com) 的思路应该是被针对了, 所以考虑自己实现. 
 
 首先考虑的是桌面版 API, 抓包可以看到是 `zhihu.com/v4` 这样的 API, 从 [`RSSHub`](https://docs.rsshub.app/social-media.html#%E7%9F%A5%E4%B9%8E) 来看, 有较严格的反爬. 且经过测试, 很多问题必须要登录账号才能获取. 
 
@@ -65,6 +65,6 @@ Android 版推出了 `极速版` , 但是有功能限制, 而且设计得更多�
  
 - ~~实现 API~~ 
 - 整理开源
-- 实现类似 [`zhihuvvv`](zhihuvvv.com) 的跳转 "去限制" (前端实在苦手, 希望有感兴趣的朋友一起完成, 我觉得完全可以做得比 app 还好使哇: 免安装免登录免广告免打扰免追踪, 除了需要登录账号的个性化和问题日志, 功能需要的数据基本都能拿到)
+- 实现类似 [`zhihuvvv`](http://zhihuvvv.com) 的跳转 "去限制" (前端实在苦手, 希望有感兴趣的朋友一起完成, 我觉得完全可以做得比 app 还好使哇: 免安装免登录免广告免打扰免追踪, 除了需要登录账号的个性化和问题日志, 功能需要的数据基本都能拿到)
 
 
