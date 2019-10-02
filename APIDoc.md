@@ -1,18 +1,20 @@
 # API 文档
 
+## 域名
+
+域名均为 **`api.zhihuvvv.workers.dev`**
+
 ## 注册
 
-> 这个所谓 `注册` 其实是对应 app 的设备注册 token, 会自动随机生成, 存放在子域名的 Cookie 中, 暂时设定 expired 时间是三天. 所以请求的时候需要带上 Cookie.
+> 这个所谓 `注册` 其实是对应 app 的设备注册 token, 会自动随机生成, 存放在子域名的 Cookie 中, 暂时设定 expired 时间是三天. 所以请求的时候 **必须** 要带上 Cookie.
 
 ### 获取 udid
-
-> 为了和 app 保持一致, 唯独它的域名用的是 `appcloud.zhihuvvv.workers.dev`.
 
 > 成功会设置 `.zhihuvvv.workers.dev` 的 Cookie, 如果 Cookie 未失效则直接返回.
 
 #### Request
 - Method: **GET**
-- URL:  `/v1/device`
+- URL:  `/appcloud/v1/device`
 
 
 #### Response  
@@ -27,8 +29,6 @@
 
 
 ### 获取 token
-
-> 接下来所有域名都是 `api.zhihuvvv.workers.dev`.
 
 > 成功会设置 `.zhihuvvv.workers.dev` 的 Cookie, 如果 Cookie 未失效则直接返回.
 
@@ -198,7 +198,7 @@
 #### Request
 - Method: **GET**
 - URL:  `/people/:peopleId`
-    - `peopleId`: 个人 ID, 例如 `7baaf3c00c2c7daeddf8e9ba813af141`
+    - `peopleId`: 个人 ID, 例如 `246e6cf44e94cefbf4b959cb5042bc91`
 
 
 #### Response  
@@ -214,7 +214,7 @@
 #### Request
 - Method: **GET**
 - URL:  `/people/:peopleId/activities?before_id={before_id}&limit={limit}&session_id={session_id}&desktop={desktop}`
-    - `peopleId`: 个人 ID, 例如 `7baaf3c00c2c7daeddf8e9ba813af141`
+    - `peopleId`: 个人 ID, 例如 `246e6cf44e94cefbf4b959cb5042bc91`
     - `limit`: 限制每次返回的数量
     - `before_id`: 
     - `session_id`: 
@@ -228,32 +228,230 @@
 
 ```
 
+### Live 统计
+
+#### Request
+- Method: **GET**
+- URL:  `/lives/people/:peopleId/statistics`
+    - `peopleId`: 个人 ID, 例如 `246e6cf44e94cefbf4b959cb5042bc91`
+
+
+#### Response  
+
+- Body  
+```json
+
+```
+
+### Market 统计
+
+#### Request
+- Method: **GET**
+- URL:  `/market/people/:peopleId/statistics`
+    - `peopleId`: 个人 ID, 例如 `246e6cf44e94cefbf4b959cb5042bc91`
+
+
+#### Response  
+
+- Body  
+```json
+
+```
+
+### Market 概览
+
+#### Request
+- Method: **GET**
+- URL:  `/market/people/:peopleId/works/summary`
+    - `peopleId`: 个人 ID, 例如 `246e6cf44e94cefbf4b959cb5042bc91`
+
+
+#### Response  
+
+- Body  
+```json
+
+```
 
 ### 回答列表
 
+#### Request
+- Method: **GET**
+- URL:  `/people/:peopleId/answers?limit=20&order_by={order_by}&offset=0`
+    - `peopleId`: 个人 ID, 例如 `246e6cf44e94cefbf4b959cb5042bc91`
+    - `order_by`: `按时间排序=created`, `按赞数排序=votenum`
+
+#### Response  
+
+- Body  
+```json
+
+```
+
 ### 提问列表
+
+#### Request
+- Method: **GET**
+- URL:  `/people/:peopleId/questions?limit=20&offset=0`
+    - `peopleId`: 个人 ID, 例如 `246e6cf44e94cefbf4b959cb5042bc91`
+
+#### Response  
+
+- Body  
+```json
+
+```
 
 ### 文章列表
 
+#### Request
+- Method: **GET**
+- URL:  `/people/:peopleId/articles?limit=20&offset=0`
+    - `peopleId`: 个人 ID, 例如 `246e6cf44e94cefbf4b959cb5042bc91`
+
+
+#### Response  
+
+- Body  
+```json
+
+```
+
 ### 专栏列表
 
-### 想法列表
+#### Request
+- Method: **GET**
+- URL:  `/people/:peopleId/columns?limit=20&offset=0`
+    - `peopleId`: 个人 ID, 例如 `246e6cf44e94cefbf4b959cb5042bc91`
 
-### 收藏列表
 
-### 关注列表
+#### Response  
 
-### 粉丝列表
+- Body  
+```json
+
+```
+
+
+### 收藏夹列表
+
+#### Request
+- Method: **GET**
+- URL:  `/people/:peopleId/collections_v2?limit=20&offset=0`
+    - `peopleId`: 个人 ID, 例如 `246e6cf44e94cefbf4b959cb5042bc91`
+
+
+#### Response  
+
+- Body  
+```json
+
+```
 
 ### Live 列表
 
+#### Request
+- Method: **GET**
+- URL:  `/people/:peopleId/lives?limit=10&offset=0`
+    - `peopleId`: 个人 ID, 例如 `246e6cf44e94cefbf4b959cb5042bc91`
+
+
+#### Response  
+
+- Body  
+```json
+
+```
+
+### 关注列表
+
+#### Request
+- Method: **GET**
+- URL:  `/people/:peopleId/followees?limit=20&offset=0`
+    - `peopleId`: 个人 ID, 例如 `246e6cf44e94cefbf4b959cb5042bc91`
+
+
+#### Response  
+
+- Body  
+```json
+
+```
+
+### 粉丝列表
+
+#### Request
+- Method: **GET**
+- URL:  `/people/:peopleId/followers?limit=20&offset=0`
+    - `peopleId`: 个人 ID, 例如 `246e6cf44e94cefbf4b959cb5042bc91`
+
+
+#### Response  
+
+- Body  
+```json
+
+```
+
 ### 关注的专栏列表
+
+#### Request
+- Method: **GET**
+- URL:  `/people/:peopleId/following_columns?limit=20&offset=0`
+    - `peopleId`: 个人 ID, 例如 `246e6cf44e94cefbf4b959cb5042bc91`
+
+
+#### Response  
+
+- Body  
+```json
+
+```
 
 ### 关注的问题列表
 
+#### Request
+- Method: **GET**
+- URL:  `/people/:peopleId/following-questions?limit=20&offset=0`
+    - `peopleId`: 个人 ID, 例如 `246e6cf44e94cefbf4b959cb5042bc91`
+
+
+#### Response  
+
+- Body  
+```json
+
+```
+
 ### 关注的话题列表
 
+#### Request
+- Method: **GET**
+- URL:  `/people/:peopleId/following_topics?limit=20&offset=0`
+    - `peopleId`: 个人 ID, 例如 `246e6cf44e94cefbf4b959cb5042bc91`
+
+
+#### Response  
+
+- Body  
+```json
+
+```
+
 ### 关注的收藏夹列表
+
+#### Request
+- Method: **GET**
+- URL:  `/people/:peopleId/following_collections?limit=20&offset=0`
+    - `peopleId`: 个人 ID, 例如 `246e6cf44e94cefbf4b959cb5042bc91`
+
+
+#### Response  
+
+- Body  
+```json
+
+```
 
 ### 表情包列表 (猜测 self 可以换为 peopleId, 自测)
 
@@ -275,6 +473,20 @@
 
 ### Live 概览
 
+#### Request
+- Method: **GET**
+- URL:  `/lives/:liveId`
+    - `liveId`: Live ID, 例如 `820225868382216192`
+
+
+
+#### Response  
+
+- Body  
+```json
+
+```
+
 
 --- 
 
@@ -282,11 +494,64 @@
 
 ### 成员被收录的回答
 
+#### Request
+- Method: **GET**
+- URL:  `/members/:memberId/marked-answers?per_page=20&limit=10&offset=0`
+    - `memberId`: 成员 ID, 有别于 peopleId, 例如 `yuxinlie`, 自测
+
+
+#### Response  
+
+- Body  
+```json
+
+```
+
 ### 成员被收录的文章
+
+#### Request
+- Method: **GET**
+- URL:  `/people/:peopleId/included-articles?offset=20&limit=20&sort_by={sort_by}`
+    - `peopleId`: 个人 ID, 例如 `246e6cf44e94cefbf4b959cb5042bc91`
+    - `sort_by`: `按时间=created`, `按赞数=vote_num`
+
+
+#### Response  
+
+- Body  
+```json
+
+```
 
 ### 成员的形象标签
 
-### 成员的形象标签附议人
+#### Request
+- Method: **GET**
+- URL:  `/api/v4/members/:memberId/signalments`
+    - `memberId`: 成员 ID, 有别于 peopleId, 例如 `yuxinlie`, 自测
+
+
+#### Response  
+
+- Body  
+```json
+
+```
+
+### 成员的形象标签支持者
+
+#### Request
+- Method: **GET**
+- URL:  `/api/v4/members/:memberId/signalments/:signalmentId/voters?offset=0`
+    - `memberId`: 成员 ID, 有别于 peopleId, 例如 `yuxinlie`, 自测
+    - `signalmentId`: 形象标签 ID, 例如 `942770846528507904`
+
+#### Response  
+
+- Body  
+```json
+
+```
 
 
 
@@ -294,33 +559,227 @@
 
 ## 想法 / Pins
 
-### 想法概览
-
-### 想法转发评论鼓掌数
-
-### 想法被转发和鼓掌动态列表
-
-### 想法评论列表
-
-### 想法评论的楼中楼
-
 ### 想法热榜
+
+#### Request
+- Method: **GET**
+- URL:  `/pins/hot_list`
+
+
+
+#### Response  
+
+- Body  
+```json
+
+```
 
 ### 想法推荐
 
+#### Request
+- Method: **GET**
+- URL:  `/pins/moments`
+
+
+
+#### Response  
+
+- Body  
+```json
+
+```
+
 ### 想法热榜有无更新
+
+#### Request
+- Method: **GET**
+- URL:  `/pins/check_update`
+
+
+
+#### Response  
+
+- Body  
+```json
+
+```
 
 ### 想法推荐用户?
 
+#### Request
+- Method: **GET**
+- URL:  `/pins/recommend/relation_member/hint`
+
+
+
+#### Response  
+
+- Body  
+```json
+
+```
+
+### 想法概览
+
+#### Request
+- Method: **GET**
+- URL:  `/pins/:pinId`
+    - `pinId`: 想法 ID, 例如 `1143178555272941568`
+
+
+
+#### Response  
+
+- Body  
+```json
+
+```
+
+### 想法转发评论鼓掌数
+
+#### Request
+- Method: **GET**
+- URL:  `/pins/interaction_count?pin_ids={pin_ids}`
+    - `pin_ids`: 多个想法 ID
+
+
+
+#### Response  
+
+- Body  
+```json
+
+```
+
+### 想法被转发和鼓掌动态列表
+
+#### Request
+- Method: **GET**
+- URL:  `/pins/:pinId/actions?limit=20&offset=0`
+    - `pinId`: 想法 ID, 例如 `1143178555272941568`
+
+
+
+#### Response  
+
+- Body  
+```json
+
+```
+
+### 想法评论列表
+
+#### Request
+- Method: **GET**
+- URL:  `/pins/:pinId/root_comments?limit=20&offset=0`
+    - `pinId`: 想法 ID, 例如 `1143178555272941568`
+
+
+
+#### Response  
+
+- Body  
+```json
+
+```
+
+### 想法评论的楼中楼
+
+#### Request
+- Method: **GET**
+- URL:  `/comments/:commentId/child_comments?order=ascending&offset=0&limit=20&order=ascending`
+    - `commentId`: 评论 ID, 例如 `710344086`
+
+
+
+#### Response  
+
+- Body  
+```json
+
+```
+
 ### 个人想法列表
 
-### 个人关注的想法专栏
+#### Request
+- Method: **GET**
+- URL:  `/pins/:peopleId/moments`
+    - `peopleId`: 个人 ID, 例如 `246e6cf44e94cefbf4b959cb5042bc91`
+
+
+
+#### Response  
+
+- Body  
+```json
+
+```
+
+### 个人关注的想法专栏 (标签)
+
+#### Request
+- Method: **GET**
+- URL:  `/pins/:peopleId/following_specials?limit=10&offset=0`
+    - `peopleId`: 个人 ID, 例如 `246e6cf44e94cefbf4b959cb5042bc91`
+
+
+
+#### Response  
+
+- Body  
+```json
+
+```
 
 ### 想法专栏概览
 
+#### Request
+- Method: **GET**
+- URL:  `/pins/special/:specialpinId`
+    - `specialpinId`: 想法专栏 ID, 例如 `972884951192113152`
+
+
+
+#### Response  
+
+- Body  
+```json
+
+```
+
 ### 想法专栏列表
 
+#### Request
+- Method: **GET**
+- URL:  `/pins/special/:specialpinId/moments?order_by={order_by}&hottest_moment_source=hot&limit=10&offset=0`
+    - `specialpinId`: 想法专栏 ID, 例如 `972884951192113152`
+    - `order_by`: `最热=hottest`, `最新=newest`
+
+
+
+#### Response  
+
+- Body  
+```json
+
+```
+
 ### 想法专栏是否有更新
+
+#### Request
+- Method: **GET**
+- URL:  `/pins/special/:specialpinId/check_update?timestamp={timestamp}`
+    - `specialpinId`: 想法专栏 ID, 例如 `972884951192113152`
+    - `timestamp`: 指定时间, 例如 `1569956209`
+
+
+
+#### Response  
+
+- Body  
+```json
+
+```
 
 
 
@@ -602,11 +1061,68 @@
 
 ```
 
-### 话题全部问题
+### 话题全部问题列表
 
-### 话题精华列表目录/章节
+#### Request
+- Method: **GET**
+- URL:  `/topics/:topicId/feeds/top_activity?before_id=0&limit=10`
+    - `topicId`: 话题 ID, 例如 `19566035`  
+
+
+#### Response  
+
+- Body  
+```json
+
+```
+
+### 话题未回答问题列表
+
+#### Request
+- Method: **GET**
+- URL:  `/topics/:topicId/unanswered_questions?offset=0&limit=10`
+    - `topicId`: 话题 ID, 例如 `19566035`  
+
+
+#### Response  
+
+- Body  
+```json
+
+```
+
+
+### 话题精华目录/章节
+
+
+#### Request
+- Method: **GET**
+- URL:  `/topics/:topicId/topic_index`
+    - `topicId`: 话题 ID, 例如 `19566035`  
+
+
+#### Response  
+
+- Body  
+```json
+
+```
 
 ### 话题精华列表
+
+
+#### Request
+- Method: **GET**
+- URL:  `/topics/:topicId/essence_feeds?offset=0&limit=10`
+    - `topicId`: 话题 ID, 例如 `19566035`  
+
+
+#### Response  
+
+- Body  
+```json
+
+```
 
 --- 
 
@@ -614,9 +1130,48 @@
 
 ### 文章概览
 
+#### Request
+- Method: **GET**
+- URL:  `/articles/:articleId`
+    - `articleId`: 文章 ID, 例如 `21463284`  
+
+
+#### Response  
+
+- Body  
+```json
+
+```
+
 ### 文章评论列表
 
+#### Request
+- Method: **GET**
+- URL:  `/articles/:articleId/root_comments?limit=10&offset=0&reverse_order=false`
+    - `articleId`: 文章 ID, 例如 `21463284`  
+
+
+#### Response  
+
+- Body  
+```json
+
+```
+
 ### 文章评论的楼中楼
+
+#### Request
+- Method: **GET**
+- URL:  `/comments/:commentId/child_comments?order=ascending&offset=0&limit=20&order=ascending`
+    - `commentId`: 评论 ID, 例如 `146547958`  
+
+
+#### Response  
+
+- Body  
+```json
+
+```
 
 --- 
 
@@ -624,11 +1179,50 @@
 
 ### 收藏夹概览
 
+#### Request
+- Method: **GET**
+- URL:  `/collections/:collectionId`
+    - `collectionId`: 收藏夹 ID, 例如 `20948311`  
+
+
+#### Response  
+
+- Body  
+```json
+
+```
+
 ### 收藏夹内容列表
 
+#### Request
+- Method: **GET**
+- URL:  `/collections/:collectionId/contents?limit=20&offset=0`
+    - `collectionId`: 收藏夹 ID, 例如 `20948311`  
+
+
+#### Response  
+
+- Body  
+```json
+
+```
+
 ### 收藏夹关注列表
+
+#### Request
+- Method: **GET**
+- URL:  `/collections/:collectionId/followers?limit=20&offset=0`
+    - `collectionId`: 收藏夹 ID, 例如 `20948311`  
+
+
+#### Response  
+
+- Body  
+```json
+
+```
 
 
 --- 
 
-> 太多了, 有些省略没写了, 慢慢补上... 也可以对照 `test.http` 来测试和猜测. 缺什么功能可以自行抓包拼凑尝试, 或者提 issue.
+> 太多了, 可能有些没写进去, 尽量慢慢补上... 也可以对照 `test.http` 来测试和猜测. 或者自行抓包尝试, 或者提 issue.
