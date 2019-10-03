@@ -6,9 +6,13 @@ Table of Contents
    * [API 文档](#api-文档)
    * [Table of Contents](#table-of-contents)
       * [域名](#域名)
-      * [注册](#注册)
+      * [初始化](#初始化)
          * [获取 udid](#获取-udid)
          * [获取 token](#获取-token)
+      * [APPView](#appview)
+         * [APPView - 问题](#appview---问题)
+         * [APPView - 回答](#appview---回答)
+         * [APPView (v2) - 回答](#appview-v2---回答)
       * [问题 / Questions](#问题--questions)
          * [问题概览](#问题概览)
          * [回答列表](#回答列表)
@@ -99,9 +103,13 @@ Table of Contents
 
 域名均为 **`api.zhihuvvv.workers.dev`**
 
-## 注册
+## 初始化
 
-> 这个所谓 `注册` 其实是对应 app 的设备注册 token, 会自动随机生成, 存放在子域名的 Cookie 中, 暂时设定 expired 时间是三天. 所以请求的时候 **必须** 要带上 Cookie.
+> 初始化对应 app 的设备注册 token, 会自动随机生成, 由于 [`Cloudflare Workers Free`](https://workers.dev) 的 CPU 时间限制, 所以拆分成了两步, 存放在子域名的 Cookie 中, 暂时设定 expired 时间是三天. 所以请求的时候 **必须** 要带上初始化成功后的 Cookie.
+
+**请求的时候 `必须` 要带上初始化成功后的 Cookie !!!**   
+**请求的时候 `必须` 要带上初始化成功后的 Cookie !!!**   
+**请求的时候 `必须` 要带上初始化成功后的 Cookie !!!**
 
 ### 获取 udid
 
@@ -141,6 +149,100 @@ Table of Contents
   "access_token": "gt2.**************************************************************g=="
 }
 ```
+
+--- 
+
+## APPView 
+
+> 这个是返回一段 html, 所谓 `服务端渲染` ? 但是会有广告和跨域问题, 需要自己处理.
+
+### APPView - 问题
+
+#### Request
+- Method: **GET**
+- URL:  `/appviewvvv/question/:questionId?content_padding_top={content_padding_top}&content_padding_bottom={content_padding_bottom}&content_padding_left={content_padding_left}&content_padding_right={content_padding_right}&title_font_size={title_font_size}&body_font_size={body_font_size}&is_dark_theme={is_dark_theme}&can_auto_load_image={can_auto_load_image}&font_resize={font_resize}&is_enable_double_click_voteup={is_enable_double_click_voteup}`
+    - `questionId`: 问题 ID, 例如 `264051433`
+    - `content_padding_top`: 默认 0 // params.content_padding_top ? params.content_padding_top : 0,
+    - `content_padding_bottom`: 默认 0
+    - `content_padding_left`: 默认 0
+    - `content_padding_right`: 默认 0
+    - `title_font_size`: 默认 22 // "title_font_size": params.title_font_size ? params.title_font_size : 22,
+    - `body_font_size`: 默认 16 // "body_font_size": params.body_font_size ? params.body_font_size : 16,
+    - `is_dark_theme`: 默认 false // "is_dark_theme": !!params.is_dark_theme,
+    - `can_auto_load_image`: 默认 false // "can_auto_load_image": !!params.can_auto_load_image,
+    - `font_resize`: 默认 "1.00" // "font_resize": params.font_resize ? `${params.font_resize}` : "1.00",
+    - `is_enable_double_click_voteup`: 默认 0 // "is_enable_double_click_voteup": !!params.is_enable_double_click_voteup ? 1 : 0,
+
+
+
+#### Response  
+
+- Body  
+```html
+
+```
+#### ScreenShot
+
+![](./images/appview-question.png)
+
+### APPView - 回答
+
+#### Request
+- Method: **GET**
+- URL:  `/appviewvvv/answer/:answerId?content_padding_top={content_padding_top}&content_padding_bottom={content_padding_bottom}&content_padding_left={content_padding_left}&content_padding_right={content_padding_right}&title_font_size={title_font_size}&body_font_size={body_font_size}&is_dark_theme={is_dark_theme}&can_auto_load_image={can_auto_load_image}&font_resize={font_resize}&is_enable_double_click_voteup={is_enable_double_click_voteup}`
+    - `answerId`: 回答 ID, 例如 `794739996`
+    - `content_padding_top`: 默认 0 // params.content_padding_top ? params.content_padding_top : 0,
+    - `content_padding_bottom`: 默认 0
+    - `content_padding_left`: 默认 0
+    - `content_padding_right`: 默认 0
+    - `title_font_size`: 默认 22 // "title_font_size": params.title_font_size ? params.title_font_size : 22,
+    - `body_font_size`: 默认 16 // "body_font_size": params.body_font_size ? params.body_font_size : 16,
+    - `is_dark_theme`: 默认 false // "is_dark_theme": !!params.is_dark_theme,
+    - `can_auto_load_image`: 默认 false // "can_auto_load_image": !!params.can_auto_load_image,
+    - `font_resize`: 默认 "1.00" // "font_resize": params.font_resize ? `${params.font_resize}` : "1.00",
+    - `is_enable_double_click_voteup`: 默认 0 // "is_enable_double_click_voteup": !!params.is_enable_double_click_voteup ? 1 : 0,
+
+
+
+#### Response  
+
+- Body  
+```html
+
+```
+
+#### ScreenShot
+
+![](./images/appview-answer.png)
+
+### APPView (v2) - 回答
+
+#### Request
+- Method: **GET**
+- URL:  `/appviewvvv/v2/answer/:answerId?content_padding_top={content_padding_top}&content_padding_bottom={content_padding_bottom}&content_padding_left={content_padding_left}&content_padding_right={content_padding_right}&title_font_size={title_font_size}&body_font_size={body_font_size}&is_dark_theme={is_dark_theme}&can_auto_load_image={can_auto_load_image}&font_resize={font_resize}&is_enable_double_click_voteup={is_enable_double_click_voteup}`
+    - `answerId`: 回答 ID, 例如 `794739996`
+    - `content_padding_top`: 默认 0 // params.content_padding_top ? params.content_padding_top : 0,
+    - `content_padding_bottom`: 默认 0
+    - `content_padding_left`: 默认 0
+    - `content_padding_right`: 默认 0
+    - `title_font_size`: 默认 22 // "title_font_size": params.title_font_size ? params.title_font_size : 22,
+    - `body_font_size`: 默认 16 // "body_font_size": params.body_font_size ? params.body_font_size : 16,
+    - `is_dark_theme`: 默认 false // "is_dark_theme": !!params.is_dark_theme,
+    - `can_auto_load_image`: 默认 false // "can_auto_load_image": !!params.can_auto_load_image,
+    - `font_resize`: 默认 "1.00" // "font_resize": params.font_resize ? `${params.font_resize}` : "1.00",
+    - `is_enable_double_click_voteup`: 默认 0 // "is_enable_double_click_voteup": !!params.is_enable_double_click_voteup ? 1 : 0,
+
+
+
+#### Response  
+
+- Body  
+```html
+
+```
+#### ScreenShot
+
+![](./images/appview-v2-answer.png)
 
 --- 
 
